@@ -33,7 +33,7 @@ export default function ImageGrid({ images, setImages }) {
           data={images}
           keyExtractor={(item, index) => `${item.uri}-${index}`}
           onDragEnd={handleDragEnd}
-          renderItem={({ item, index, drag, isActive }) => (
+          renderItem={({ item, getIndex, drag, isActive }) => (
             <View
               style={[
                 styles.draggableItem,
@@ -42,7 +42,7 @@ export default function ImageGrid({ images, setImages }) {
             >
               <ImageCard
                 item={item}
-                index={index}
+                index={getIndex ? (getIndex() ?? 0) : 0}
                 onRemove={handleRemove}
                 onDrag={drag}
               />
