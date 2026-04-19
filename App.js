@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 
 import DropZone from './src/components/DropZone';
 import ImageGrid from './src/components/ImageGrid';
@@ -19,7 +18,7 @@ import ConvertButton from './src/components/ConvertButton';
 import { generatePdf, sharePdf } from './src/utils/pdfGenerator';
 import { colors, fonts, spacing, radius } from './src/styles/theme';
 
-SplashScreen.preventAutoHideAsync();
+
 
 const TAGS = ['On-Device', 'Multi-Image', 'Drag & Reorder', 'All Formats'];
 
@@ -39,12 +38,6 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     SpaceMono: require('./assets/fonts/SpaceMono-Regular.ttf'),
   });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
   if (!fontsLoaded) return null;
 
@@ -99,7 +92,7 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={styles.safe} onLayout={onLayoutRootView}>
+    <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={colors.bg} />
       <ScrollView
         style={styles.scroll}
