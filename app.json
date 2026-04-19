@@ -53,7 +53,8 @@
           "savePhotosPermission": "Allow IMG_to_PDF to save PDFs to your library.",
           "isAccessMediaLocationEnabled": true
         }
-      ]
+      ],
+      "expo-font"
     ]
   }
 }
