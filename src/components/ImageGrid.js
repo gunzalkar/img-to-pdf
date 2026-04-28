@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ImageCard from './ImageCard';
 import { colors, fonts, spacing } from '../styles/theme';
 
@@ -28,29 +27,27 @@ export default function ImageGrid({ images, setImages }) {
       </View>
 
       {/* List */}
-      <GestureHandlerRootView>
-        <DraggableFlatList
-          data={images}
-          keyExtractor={(item, index) => `${item.uri}-${index}`}
-          onDragEnd={handleDragEnd}
-          renderItem={({ item, getIndex, drag, isActive }) => (
-            <View
-              style={[
-                styles.draggableItem,
-                isActive && styles.draggableItemActive,
-              ]}
-            >
-              <ImageCard
-                item={item}
-                index={getIndex ? (getIndex() ?? 0) : 0}
-                onRemove={handleRemove}
-                onDrag={drag}
-              />
-            </View>
-          )}
-          scrollEnabled={false}
-        />
-      </GestureHandlerRootView>
+      <DraggableFlatList
+        data={images}
+        keyExtractor={(item, index) => `${item.uri}-${index}`}
+        onDragEnd={handleDragEnd}
+        renderItem={({ item, getIndex, drag, isActive }) => (
+          <View
+            style={[
+              styles.draggableItem,
+              isActive && styles.draggableItemActive,
+            ]}
+          >
+            <ImageCard
+              item={item}
+              index={getIndex ? (getIndex() ?? 0) : 0}
+              onRemove={handleRemove}
+              onDrag={drag}
+            />
+          </View>
+        )}
+        scrollEnabled={false}
+      />
     </View>
   );
 }

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  ScrollView,
   StyleSheet,
   SafeAreaView,
   StatusBar,
   Alert,
   TouchableOpacity,
 } from 'react-native';
+import { ScrollView, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 
 import DropZone from './src/components/DropZone';
@@ -92,7 +92,8 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={colors.bg} />
       <ScrollView
         style={styles.scroll}
@@ -151,6 +152,7 @@ export default function App() {
         />
       </ScrollView>
     </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
